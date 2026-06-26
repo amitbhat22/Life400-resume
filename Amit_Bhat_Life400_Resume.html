@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIFE400 - CANDIDATE PROFILE - A.BHAT</title>
+<style>
+  :root {
+    --screen-bg: #000000;
+    --phosphor: #55FF55;
+    --phosphor-dim: #2E9E2E;
+    --phosphor-bright: #AFFFAF;
+    --amber: #FFB000;
+    --cyan: #55FFFF;
+    --white: #FFFFFF;
+    --reverse-bg: #55FF55;
+    --reverse-fg: #000000;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: var(--screen-bg);
+  }
+
+  #i5250-root {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--screen-bg);
+    color: var(--phosphor);
+    font-family: "IBM Plex Mono", "Consolas", "Courier New", monospace;
+  }
+
+  #i5250-root * { box-sizing: border-box; }
+
+  #i5250-root .scanlines {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0px,
+      rgba(0,0,0,0) 2px,
+      rgba(0,0,0,0.12) 3px
+    );
+    mix-blend-mode: multiply;
+    z-index: 5;
+  }
+
+  #i5250-root .crt-glow {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(85,255,85,0.05) 0%, rgba(0,0,0,0.35) 100%);
+    z-index: 4;
+  }
+
+  #i5250-root .screen-wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  #i5250-root .screen {
+    text-shadow: 0 0 2px rgba(85,255,85,0.6), 0 0 6px rgba(85,255,85,0.25);
+    width: 100%;
+    max-width: 56em;
+    min-height: 100vh;
+    padding: 2rem 1.25rem;
+    font-size: 1rem;
+    line-height: 1.55;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #i5250-root .hdr-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5em 1em;
+    color: var(--phosphor-bright);
+    font-size: 0.85em;
+  }
+
+  #i5250-root .rule {
+    border: none;
+    border-top: 1px dashed var(--phosphor-dim);
+    margin: 0.6em 0;
+  }
+
+  #i5250-root .title-row {
+    text-align: center;
+    color: var(--white);
+    text-shadow: 0 0 4px rgba(255,255,255,0.5);
+    letter-spacing: 0.12em;
+    font-weight: bold;
+    padding: 0.2em 0;
+  }
+
+  #i5250-root .field {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.5em;
+    margin: 0.15em 0;
+  }
+  #i5250-root .field .label { flex: 0 0 auto; }
+  #i5250-root .field .value { flex: 1 1 auto; }
+
+  #i5250-root .label { color: var(--cyan); }
+  #i5250-root .value { color: var(--phosphor-bright); }
+  #i5250-root .amber { color: var(--amber); }
+  #i5250-root .rev {
+    background: var(--reverse-bg);
+    color: var(--reverse-fg);
+    padding: 0 0.3em;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  #i5250-root .dim { color: var(--phosphor-dim); }
+
+  #i5250-root .banner {
+    color: var(--amber);
+    text-align: center;
+    margin: 0.3em 0;
+  }
+
+  #i5250-root .block-label {
+    color: var(--cyan);
+    margin: 0.8em 0 0.3em;
+  }
+
+  #i5250-root .body-text {
+    margin: 0 0 0.3em 1.25em;
+  }
+
+  #i5250-root .cursor {
+    display: inline-block;
+    width: 0.55em;
+    height: 1em;
+    background: var(--phosphor-bright);
+    vertical-align: -0.15em;
+    animation: i5250-blink 1s steps(1) infinite;
+  }
+  @keyframes i5250-blink { 50% { opacity: 0; } }
+
+  #i5250-root a.opt {
+    color: var(--phosphor-bright);
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0 0.15em;
+  }
+  #i5250-root a.opt:hover { background: var(--phosphor); color: #000; }
+
+  #i5250-root .footer {
+    margin-top: auto;
+    padding-top: 0.8em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em 1.2em;
+    font-size: 0.9em;
+  }
+  #i5250-root .fk { color: var(--amber); }
+  #i5250-root .msgline { color: var(--amber); text-align: center; margin: 0.5em 0; }
+
+  #i5250-root .panel-tag {
+    color: var(--cyan);
+    font-size: 0.85em;
+  }
+
+  #i5250-root table.tbl { width: 100%; border-collapse: collapse; margin: 0.3em 0; }
+  #i5250-root table.tbl td { vertical-align: top; padding: 0.15em 0.4em 0.15em 0; }
+  #i5250-root table.tbl td.seq { color: var(--phosphor-dim); white-space: nowrap; width: 2.5em; }
+
+  #i5250-root .entry { margin: 0 0 1em; }
+  #i5250-root .entry-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.3em 1em;
+    margin-bottom: 0.3em;
+  }
+
+  @media (max-width: 600px) {
+    #i5250-root .screen { font-size: 0.85rem; padding: 1.25rem 0.75rem; }
+    #i5250-root .hdr-row { font-size: 0.8em; }
+  }
+</style>
+</head>
+<body>
+
+<div id="i5250-root">
+<div class="scanlines"></div>
+<div class="crt-glow"></div>
+
+<div class="screen-wrap">
+<div class="screen" id="i5250-screen">
+
+  <div class="hdr-row">
+    <span>LIFE400</span>
+    <span>HR PERSONNEL INQUIRY</span>
+    <span>DXC0497&nbsp;&nbsp;&nbsp;06/26/26&nbsp;&nbsp;&nbsp;14:32:09</span>
+  </div>
+  <hr class="rule">
+  <div class="title-row">CANDIDATE PROFILE DISPLAY</div>
+  <hr class="rule">
+
+  <div class="field"><span class="label">CANDIDATE NAME&nbsp;. . . . . :</span><span class="value">AMIT GANAPATI BHAT</span></div>
+  <div class="field"><span class="label">CANDIDATE ID&nbsp;. . . . . . :</span><span class="value">PA2-04971</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label">STATUS&nbsp;. :</span><span class="rev">ACTIVE</span></div>
+  <div class="field"><span class="label">LOCATION&nbsp;. . . . . . . . :</span><span class="value">SYDNEY, AUSTRALIA</span></div>
+  <div class="field"><span class="label">PHONE&nbsp;&nbsp;. . . . . . . . . :</span><span class="value">0492 857 495</span></div>
+  <div class="field"><span class="label">EMAIL&nbsp;&nbsp;. . . . . . . . . :</span><span class="value">subbu.bhat108@gmail.com</span></div>
+
+  <hr class="rule">
+  <div class="banner">PRESS F4 FOR SUMMARY PROMPT, OR TYPE OVER TEXT BELOW</div>
+  <hr class="rule">
+
+  <div class="block-label">SUMMARY TEXT:</div>
+  <div class="body-text">
+    IBM i (AS400) Developer with 4+ years of experience developing, enhancing, and
+    supporting Life400/Smart400 insurance applications using COBOL/400, SQL/400, DB2,
+    and RPGLE. Experienced in policy administration, claims, billing, reinsurance, BAU
+    support, impact analysis, data reconciliation, and enterprise release processes
+    within life insurance environments. Proven ability to deliver stable, high-quality
+    solutions through effective collaboration with business and technical teams while
+    working within ITIL-aligned change and release processes. Curious, outcome-focused,
+    and a strong team player.<span class="cursor"></span>
+  </div>
+
+  <div class="footer">
+    <span><span class="fk">F3</span>=Exit</span>
+    <span><span class="fk">F5</span>=Refresh</span>
+    <span><span class="fk">F12</span>=Cancel</span>
+    <span><a class="opt" onclick="i5250go('skills')"><span class="fk">F8</span>=Skills →</a></span>
+  </div>
+
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+
+var screens = {};
+screens.main = document.getElementById('i5250-screen').innerHTML;
+
+function head(title, panelTag){
+  return '<div class="hdr-row"><span>LIFE400</span><span>HR PERSONNEL INQUIRY</span>' +
+    '<span>DXC0497&nbsp;&nbsp;&nbsp;06/26/26&nbsp;&nbsp;&nbsp;14:32:09</span></div>' +
+    '<hr class="rule">' +
+    '<div class="title-row">' + title + '</div>' +
+    '<hr class="rule">';
+}
+
+screens.skills =
+  head('CORE TECHNICAL SKILLS DISPLAY') +
+  '<div class="field"><span class="label">CANDIDATE NAME&nbsp;. . . . . :</span><span class="value">AMIT GANAPATI BHAT</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="panel-tag">PANEL 2 OF 5</span></div>' +
+  '<div class="block-label">IBM i / AS400</div>' +
+  '<div class="body-text">COBOL/400, SQL/400, DB2 for i, CL/400, RPG IV/RPGLE (free format), LIFE/400, SMART/400, Batch Processing</div>' +
+  '<div class="block-label">Data and Integration</div>' +
+  '<div class="body-text">Advanced SQL, Stored Procedures, REST/SOAP API Integration, File Processing (Inbound/Outbound), FTP/SFTP, Data Validation Frameworks</div>' +
+  '<div class="block-label">Development and Support</div>' +
+  '<div class="body-text">Application Support (BAU), Impact Analysis, Production Issue Resolution, Code Modernisation, Performance Optimisation</div>' +
+  '<div class="block-label">Tools and Practices</div>' +
+  '<div class="body-text">Agile (Scrum), SDLC, CI/CD, ITIL Change and Release, Technical Documentation</div>' +
+  '<div class="block-label">Additional Exposure</div>' +
+  '<div class="body-text">Cloud-connected tools, AI-assisted development (e.g., GitHub Copilot)</div>' +
+  '<div class="footer">' +
+    '<span><span class="fk">F3</span>=Exit</span>' +
+    '<span><span class="fk">F7</span>=<a class="opt" onclick="i5250go(\'main\')">Prev</a></span>' +
+    '<span><span class="fk">F8</span>=<a class="opt" onclick="i5250go(\'exp\')">Next</a></span>' +
+    '<span><span class="fk">F12</span>=Cancel</span>' +
+  '</div>';
+
+screens.exp =
+  head('EMPLOYMENT HISTORY DISPLAY (1/2)') +
+  '<div class="entry">' +
+    '<div class="entry-head"><span><span class="label">EMPLOYER&nbsp;. . . . . . . . :</span><span class="value">DXC Technology</span></span><span><span class="label">SITE:</span> <span class="value">Sydney, Australia</span></span></div>' +
+    '<div class="field"><span class="label">POSITION&nbsp;. . . . . . . . :</span><span class="rev">Programmer Analyst II</span></div>' +
+    '<div class="field"><span class="label">PERIOD&nbsp;&nbsp;. . . . . . . . :</span><span class="value">Nov 2023 - Present</span></div>' +
+  '</div>' +
+  '<div class="block-label">ACHIEVEMENTS</div>' +
+  '<table class="tbl">' +
+    '<tr><td class="seq">010</td><td>Developed and enhanced Life400 policy administration modules using COBOL/400 and CL/400, directly supporting insurance product launches.</td></tr>' +
+    '<tr><td class="seq">020</td><td>Design and implement automation solutions on Life400, achieving a <span class="rev">25%</span> reduction in turnaround time for business requests.</td></tr>' +
+    '<tr><td class="seq">030</td><td>Built a self-service data extraction solution using COBOL/400 and SQL/400, reducing manual reporting effort by <span class="rev">40%+</span> for Agency and Operations teams.</td></tr>' +
+    '<tr><td class="seq">040</td><td>Resolved long-standing data inconsistencies, improving claim accuracy by <span class="rev">15%</span> and accelerating case resolution.</td></tr>' +
+    '<tr><td class="seq">050</td><td>Automated insurance product pricing data flows, reducing manual policy updates by <span class="rev">30%</span> and improving data accuracy.</td></tr>' +
+    '<tr><td class="seq">060</td><td>Designed robust data validation and reconciliation frameworks for inbound external files, eliminating <span class="rev">98%</span> of processing errors.</td></tr>' +
+    '<tr><td class="seq">070</td><td>Collaborated with business analysts to translate functional requirements into technical specifications for SMART400 enhancements.</td></tr>' +
+    '<tr><td class="seq">080</td><td>Reviewed peer code changes and supported junior team members during development, testing, and deployment activities to ensure high-quality releases.</td></tr>' +
+  '</table>' +
+  '<div class="footer">' +
+    '<span><span class="fk">F3</span>=Exit</span>' +
+    '<span><span class="fk">F7</span>=<a class="opt" onclick="i5250go(\'skills\')">Prev</a></span>' +
+    '<span><span class="fk">F8</span>=<a class="opt" onclick="i5250go(\'exp2\')">Next</a></span>' +
+    '<span><span class="fk">F12</span>=Cancel</span>' +
+  '</div>';
+
+screens.exp2 =
+  head('EMPLOYMENT HISTORY DISPLAY (2/2)') +
+  '<div class="entry">' +
+    '<div class="entry-head"><span><span class="label">EMPLOYER&nbsp;. . . . . . . . :</span><span class="value">DXC Technology</span></span><span><span class="label">SITE:</span> <span class="value">Noida, India</span></span></div>' +
+    '<div class="field"><span class="label">POSITION&nbsp;. . . . . . . . :</span><span class="rev">Programmer Analyst</span></div>' +
+    '<div class="field"><span class="label">PERIOD&nbsp;&nbsp;. . . . . . . . :</span><span class="value">Aug 2021 - Nov 2023</span></div>' +
+  '</div>' +
+  '<div class="block-label">ACHIEVEMENTS</div>' +
+  '<table class="tbl">' +
+    '<tr><td class="seq">010</td><td>Supported BAU operations for Life400 applications, maintaining <span class="rev">99.8%</span> system availability.</td></tr>' +
+    '<tr><td class="seq">020</td><td>Analysed and resolved complex historical data issues, reducing discrepancies by <span class="rev">35%</span>.</td></tr>' +
+    '<tr><td class="seq">030</td><td>Developed automated governance and regulatory extracts, saving <span class="rev">30+ hours</span> per month of manual effort.</td></tr>' +
+    '<tr><td class="seq">040</td><td>Implemented an automated Softlock Release System, reducing manual intervention by <span class="rev">80%</span> and processing time from hours to minutes.</td></tr>' +
+    '<tr><td class="seq">050</td><td>Led conversion of fixed-format RPG to free-format RPG, improving code readability, maintainability, and reducing support effort by <span class="rev">20%</span>.</td></tr>' +
+    '<tr><td class="seq">060</td><td>Performed detailed impact analysis to minimise production risk and ensure smooth releases.</td></tr>' +
+    '<tr><td class="seq">070</td><td>Collaborated with QA, BAs, and functional teams to deliver stable releases with <span class="rev">zero</span> post-deployment rollbacks.</td></tr>' +
+  '</table>' +
+  '<div class="footer">' +
+    '<span><span class="fk">F3</span>=Exit</span>' +
+    '<span><span class="fk">F7</span>=<a class="opt" onclick="i5250go(\'exp\')">Prev</a></span>' +
+    '<span><span class="fk">F8</span>=<a class="opt" onclick="i5250go(\'cert\')">Next</a></span>' +
+    '<span><span class="fk">F12</span>=Cancel</span>' +
+  '</div>';
+
+screens.cert =
+  head('CERTIFICATIONS / EDUCATION DISPLAY') +
+  '<div class="block-label">CERTIFICATIONS</div>' +
+  '<div class="body-text" style="margin-bottom:0.8em;">' +
+    '<span class="label">01&nbsp;&nbsp;</span><span class="value">Project Management Certification</span> &mdash; <span class="label">ISSUER:</span> YESI Education &nbsp; <span class="label">DATE:</span> Jan 2026<br>' +
+    'Training in project planning, scheduling, risk management, stakeholder communication, and delivery governance.' +
+  '</div>' +
+  '<div class="body-text" style="margin-bottom:0.8em;">' +
+    '<span class="label">02&nbsp;&nbsp;</span><span class="value">LOMA 281 &ndash; Fundamentals of Insurance</span> &mdash; <span class="label">ISSUER:</span> LOMA &nbsp; <span class="label">DATE:</span> Dec 2022<br>' +
+    'Understanding of insurance products, operations, and regulatory considerations.' +
+  '</div>' +
+  '<div class="body-text" style="margin-bottom:0.8em;">' +
+    '<span class="label">03&nbsp;&nbsp;</span><span class="value">IBM i (AS400) Certification</span> &mdash; <span class="label">ISSUER:</span> IBM &nbsp; <span class="label">DATE:</span> Jul 2021<br>' +
+    'Expertise in RPG, CLLE scripting, DB2, system performance, and enterprise application development.' +
+  '</div>' +
+  '<div class="block-label">EDUCATION</div>' +
+  '<div class="field"><span class="label">DEGREE&nbsp;. . . . . . . . . :</span><span class="value">Bachelor of Engineering &ndash; Information Science and Engineering</span></div>' +
+  '<div class="field"><span class="label">INSTITUTION&nbsp;. . . . . . . :</span><span class="value">Nitte Meenakshi Institute of Technology, Bangalore, India</span></div>' +
+  '<div class="field"><span class="label">PERIOD&nbsp;&nbsp;. . . . . . . . :</span><span class="value">2017 - 2021</span></div>' +
+  '<div class="msgline">*** END OF RECORD ***</div>' +
+  '<div class="footer">' +
+    '<span><span class="fk">F3</span>=<a class="opt" onclick="i5250go(\'main\')">Exit</a></span>' +
+    '<span><span class="fk">F7</span>=<a class="opt" onclick="i5250go(\'exp2\')">Prev</a></span>' +
+    '<span><span class="fk">F12</span>=Cancel</span>' +
+  '</div>';
+
+window.i5250go = function(name){
+  var el = document.getElementById('i5250-screen');
+  if (screens[name]) { el.innerHTML = screens[name]; }
+};
+
+})();
+</script>
+</body>
+</html>
